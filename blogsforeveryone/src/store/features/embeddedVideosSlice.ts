@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 interface EmbeddedVideo {
     _id: string;
     title: string;
+    thumbnail:string
     videoId: string; // Assuming you want to use videoId instead of url
 }
 
