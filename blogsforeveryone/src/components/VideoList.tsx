@@ -36,12 +36,12 @@ const VideoList = () => {
                     <div className="p-4">
                         <h2 className="text-lg font-bold">{video.title}</h2>
                         <Image
-                            src={video.thumbnail} // Use the thumbnail URL from the video data
+                            src={video.thumbnail}
                             alt={video.title}
-                            width={320} // Set a width for the image
-                            height={180} // Set a height for the image
+                            width={320}
+                            height={180}
                             className="w-full h-auto cursor-pointer"
-                            onClick={() => handleVideoClick(video.videoId)} // Click to play video
+                            onClick={() => handleVideoClick(video.videoId)}
                         />
                         <button
                             onClick={() => handleVideoClick(video.videoId)}
@@ -61,15 +61,16 @@ const VideoList = () => {
                         >
                             &times;
                         </button>
-                        <iframe
-                            width="560"
-                            height="315"
-                            src={`https://www.youtube.com/embed/${selectedVideoId}`}
-                            title="YouTube video player"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        ></iframe>
+                        <div className="relative" style={{ paddingBottom: '56.25%', height: 0 }}>
+                            <iframe
+                                className="absolute top-0 left-0 w-full h-full"
+                                src={`https://www.youtube.com/embed/${selectedVideoId}`}
+                                title="YouTube video player"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            ></iframe>
+                        </div>
                     </div>
                 </div>
             )}
