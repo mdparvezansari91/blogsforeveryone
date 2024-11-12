@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { store } from "@/store/store";
 import Footer from "@/components/Footer";
 import Head from "next/head"; // Import Head from next/head
+import Script from 'next/script';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -39,6 +40,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5103620059122816"
+          crossOrigin="anonymous"
+        />
         <Provider store={store}>
           <Navbar />
           {children}
