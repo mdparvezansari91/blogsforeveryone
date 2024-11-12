@@ -54,9 +54,9 @@ export default function Home() {
         </Link>
         <Link
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="/contact"
+          href="/contactus"
         >
-          Contact
+          Contact Us
         </Link>
         <Link
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
