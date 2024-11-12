@@ -61,7 +61,7 @@ const VideoList = () => {
                         >
                             &times;
                         </button>
-                        <div className="relative" style={{ paddingBottom: '56.25%', height: 0 }}>
+                        <div className="relative" style={{ paddingBottom: '56.25%', width:300, height: 300 }}>
                             <iframe
                                 className="absolute top-0 left-0 w-full h-full"
                                 src={`https://www.youtube.com/embed/${selectedVideoId}`}

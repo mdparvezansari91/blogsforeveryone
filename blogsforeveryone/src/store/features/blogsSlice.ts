@@ -5,7 +5,8 @@ import { toast } from 'react-toastify';
 interface Blogs {
     _id: string;
     title: string;
-    content:string
+    content:string,
+    createdAt:string
 }
 
 interface BlogsState {

@@ -1,11 +1,11 @@
-"use client"
-// import type { Metadata } from "next";
+"use client";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
 import Footer from "@/components/Footer";
+import Head from "next/head"; // Import Head from next/head
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,13 +30,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        {/* Add your Google site verification meta tag here */}
+        <meta name="google-site-verification" content="ca-pub-5103620059122816" />
+        <title>Blog for everyOne</title>
+        <meta name="description" content="Description of your website" />
+      </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Provider store={store}>
-        <Navbar/>
-        {children}
-        <Footer/>
+          <Navbar />
+          {children}
+          <Footer />
         </Provider>
       </body>
     </html>

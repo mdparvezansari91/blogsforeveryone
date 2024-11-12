@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
+import Head from 'next/head';
 
 const BlogDetail = () => {
     const params = useParams<{ id: string }>();
@@ -24,18 +25,35 @@ const BlogDetail = () => {
     console.log('detailedBlog:', detailedBlog); // Debugging line
 
     return (
-        <div className="max-w-3xl mx-auto p-4">
-            {detailedBlog ? ( // Check if detailedBlog is not null
-                <div className="bg-white shadow-lg rounded-lg p-6">
-                    <h1 className="text-3xl font-bold mb-4">{detailedBlog.title}</h1>
-                    <p className="text-gray-700 mb-4">{detailedBlog.content}</p>
-                    {/* Optional: Add a button or link to go back */}
-                    <Link href="/blogs" className="text-blue-500 hover:underline">Back to Blogs</Link>
-                </div>
-            ) : (
-                <p className="text-center text-gray-500">Loading blog details...</p>
-            )}
-        </div>
+        <>
+            <Head>
+                <title>{detailedBlog ? detailedBlog.title : 'Loading...'}</title>
+                <meta name="description" content={detailedBlog ? detailedBlog.content.substring(0, 150) : 'Loading blog details...'} />
+                <link rel="canonical" href={`https://yourwebsite.com/blogs/${id}`} />
+                {/* Open Graph tags for social media sharing */}
+                {detailedBlog && (
+                    <>
+                        <meta property="og:title" content={detailedBlog.title} />
+                        <meta property="og:description" content={detailedBlog.content.substring(0, 150)} />
+                        <meta property="og:url" content={`https://yourwebsite.com/blogs/${id}`} />
+                        {/* If you have an image, you can add it here */}
+                        {/* <meta property="og:image" content={detailedBlog.imageUrl} /> */}
+                    </>
+                )}
+            </Head>
+            <div className="max-w-3xl mx-auto p-4">
+                {detailedBlog ? ( // Check if detailedBlog is not null
+                    <article className="bg-white shadow-lg rounded-lg p-6">
+                        <h1 className="text-3xl font-bold mb-4">{detailedBlog.title}</h1>
+                        <p className="text-gray-700 mb-4">{detailedBlog.content}</p>
+                        {/* Optional: Add a button or link to go back */}
+                        <Link href="/blogs" className="text-blue-500 hover:underline">Back to Blogs</Link>
+                    </article>
+                ) : (
+                    <p className="text-center text-gray-500">Loading blog details...</p>
+                )}
+            </div>
+        </>
     );
 }
 
