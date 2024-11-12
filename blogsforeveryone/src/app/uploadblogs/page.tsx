@@ -8,6 +8,7 @@ const BlogUploader: React.FC = () => {
     const [data, setData] = useState({
         title: '',
         content: '',
+        category:'',
     });
 
     // Handle input changes
@@ -26,7 +27,7 @@ const BlogUploader: React.FC = () => {
             const response = await axios.post("/api/uploadblogs", data);
             console.log(response.data); // Log the response data
             // Optionally, reset the form or show a success message here
-            setData({ title: '', content: '' }); // Reset form fields
+            setData({ title: '', content: '', category:'' }); // Reset form fields
         } catch (error) {
             console.error("Error uploading blog post:", error);
             // Optionally, show an error message to the user
@@ -56,6 +57,17 @@ const BlogUploader: React.FC = () => {
                         onChange={onChange} // Handle changes
                         className="border border-gray-300 rounded w-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         rows={6}
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="title" className="block text-gray-700 font-semibold mb-2">Category</label>
+                    <input
+                        type="text"
+                        name="category"
+                        value={data.category} // Bind value to state
+                        onChange={onChange} // Handle changes
+                        className="border border-gray-300 rounded w-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         required
                     />
                 </div>

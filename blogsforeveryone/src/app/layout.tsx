@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
+import Footer from "@/components/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,8 +36,8 @@ export default function RootLayout({
         <Provider store={store}>
         <Navbar/>
         {children}
+        <Footer/>
         </Provider>
-
       </body>
     </html>
   );

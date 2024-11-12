@@ -6,6 +6,9 @@ const blogPostSchema = new mongoose.Schema({
   },
   content:{
     type:String
+  },
+  category:{
+    type:String
   }
 }
 ,
