@@ -75,7 +75,7 @@ const Blogs = () => {
                             "@type": "BlogPosting",
                             "headline": blog.title,
                             "description": truncateContent(blog.content, 150),
-                            "url": `https://yourwebsite.com/blogs/${blog._id}`,
+                            "url": `https://www.shopnblog.online/blogs/${blog._id}`,
                             "datePublished": blog.createdAt,
                             "author": {
                                 "@type": "Person",
