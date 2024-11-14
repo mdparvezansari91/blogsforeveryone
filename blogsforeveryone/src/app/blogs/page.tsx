@@ -23,6 +23,7 @@ const Blogs = () => {
 
     
       const handlelike = ()=>{
+        
         console.log("like button clicked")
 
       }
