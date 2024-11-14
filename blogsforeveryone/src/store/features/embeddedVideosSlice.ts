@@ -50,7 +50,6 @@ const embeddedVideosSlice = createSlice({
             .addCase(fetchembeddedvideos.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 state.videos = action.payload; // This should now be an array of videos
-                console.log(action.payload)
                 state.error = null;
             })
             .addCase(fetchembeddedvideos.rejected, (state, action) => {

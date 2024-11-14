@@ -6,6 +6,8 @@ interface Blogs {
     _id: string;
     title: string;
     content:string,
+    likes:string[],
+    dislikes:string[],
     createdAt:string
 }
 
@@ -41,7 +43,7 @@ export const fetchblogs = createAsyncThunk(
 
 
 const blogsSlice = createSlice({
-    name: 'product',
+    name: 'blogs',
     initialState,
     reducers: {
         

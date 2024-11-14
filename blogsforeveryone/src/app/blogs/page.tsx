@@ -6,12 +6,29 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FaThumbsUp, FaThumbsDown, FaEdit, FaTrash, FaRegComment } from 'react-icons/fa'; // Import icons
 import Head from 'next/head';
+import CategoryFilter from '@/components/CategoryFilter';
 
 const Blogs = () => {
     const dispatch = useAppDispatch();
     const blogs = useAppSelector(state => state.blogs.blogs);
     const [comments, setComments] = useState<{ [key: string]: string[] }>({});
     const [visibleComments, setVisibleComments] = useState<{ [key: string]: boolean }>({}); // State to track visibility of comments
+    const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+    const handleCategorySelect = (category: string) => {
+        setSelectedCategory(category);
+        // Here you can implement additional logic to filter your blog posts
+        console.log(`Selected category: ${selectedCategory}`);
+      };
+
+    
+      const handlelike = ()=>{
+        console.log("like button clicked")
+
+      }
+
+
+
 
     useEffect(() => {
         dispatch(fetchblogs());
@@ -85,6 +102,7 @@ const Blogs = () => {
                     })}
                 </script>
             </Head>
+            <CategoryFilter onCategorySelect={handleCategorySelect} />
             <div className="container mx-auto px-4 py-8">
                 <h1 className="text-3xl font-bold text-center mb-6">Blogs</h1>
                 {blogs.length === 0 ? (
@@ -106,12 +124,15 @@ const Blogs = () => {
 
                                 {/* Like/Dislike Icons */}
                                 <div className="flex items-center mt-4">
-                                    <button className="text-blue-500 mr-4">
+                                    <p className='mr-1'>200</p>
+                                    <button onClick={handlelike} className="text-blue-500 mr-4">
                                         <FaThumbsUp />
                                     </button>
+                                    <p className='mr-1'>100</p>
                                     <button className="text-red-500 mr-4">
                                         <FaThumbsDown />
                                     </button>
+                                    <p className='mr-1'>10</p>
                                     <button className="text-red-900" onClick={() => toggleCommentsVisibility(blog._id)}>
                                         <FaRegComment />
                                     </button>

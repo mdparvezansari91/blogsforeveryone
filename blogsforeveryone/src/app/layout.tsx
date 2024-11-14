@@ -7,6 +7,9 @@ import { store } from "@/store/store";
 import Footer from "@/components/Footer";
 import Head from "next/head"; // Import Head from next/head
 import Script from 'next/script';
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,6 +32,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <Head>
@@ -47,6 +51,7 @@ export default function RootLayout({
         />
         <Provider store={store}>
           <Navbar />
+          <ToastContainer/>
           {children}
           <Footer />
         </Provider>

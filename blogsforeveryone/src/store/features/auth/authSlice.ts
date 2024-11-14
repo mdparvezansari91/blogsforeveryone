@@ -3,8 +3,8 @@ import axios, { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 
 interface User {
-  name: string;
   email: string;
+  password:string
 }
 
 interface AuthState {
@@ -74,7 +74,7 @@ export const signOut = createAsyncThunk(
 export const profile = createAsyncThunk("auth/profile",async(_, {rejectWithValue})=>{
   try {
     const response = await axios.post('/api/profile');
-    return response.data.user
+    return response.data
   } catch (error) {
     const axiosError = error as AxiosError<ErrorResponse>;
       // Only show toast for actual errors, not for unauthorized states
