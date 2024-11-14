@@ -1,8 +1,16 @@
 "use client"
 import ImageCarousel from "@/components/ImageCarousel";
-import VideoList from "@/components/VideoList";
-import ci from "../../public/coverpage.png"
-import cv from "../../public/coverimage2.jpg"
+import ci from "../../public/assets/images/coverpage.png"
+import cv from "../../public/assets/images/coverimage2.jpg"
+import EMICalculator from "@/components/calculators/EmiCalculator";
+import BMICalculator from "@/components/calculators/BMICalculator";
+import SavingsCalculator from "@/components/calculators/SavingsCalculator";
+import CurrencyConverter from "@/components/calculators/CurrencyConverter";
+import InvestmentCalculator from "@/components/calculators/InvestmentCalculator";
+import MortgageCalculator from "@/components/calculators/MortgageCalculator";
+import RetirementCalculator from "@/components/calculators/RetirementCalculator";
+import TaxCalculator from "@/components/calculators/TaxCalculator";
+import CarouselComponent from "@/components/CarouselComponents";
 
 const images = [
   ci, cv
@@ -25,7 +33,34 @@ export default function Home() {
         <h1 className="text-2xl font-bold mb-4"></h1>
         <ImageCarousel images={images} />
       </div>
-      <VideoList />
+      <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center space-y-8 sm:space-y-0 sm:space-x-8 p-4">
+        <div className="max-w-xs w-full">
+          <BMICalculator />
+        </div>
+        <div className="max-w-xs w-full">
+          <CurrencyConverter />
+        </div>
+        <div className="max-w-xs w-full">
+          <EMICalculator />
+        </div>
+        <div className="max-w-xs w-full">
+          <InvestmentCalculator />
+        </div>
+        <div className="max-w-xs w-full">
+          <MortgageCalculator />
+        </div>
+        <div className="max-w-xs w-full">
+          <RetirementCalculator />
+        </div>
+        <div className="max-w-xs w-full">
+          <SavingsCalculator />
+        </div>
+        <div className="max-w-xs w-full">
+          <TaxCalculator />
+        </div>
+      </div>
+      <CarouselComponent />
+      
     </>
   );
 }

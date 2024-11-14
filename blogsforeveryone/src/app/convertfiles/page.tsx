@@ -1,5 +1,5 @@
 
-import DocxToPdf from "@/components/DocsxToPdf";
+import DocxToPdf from "@/components/fileconverters/DocsxToPdf";
 
 export default function ConvertFiles() {
     return (
