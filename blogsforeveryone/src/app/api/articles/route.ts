@@ -16,26 +16,24 @@ export async function GET() {
             params: {
                 access_key: MEDIA_STACK_API,
                 
-                limit: 5 // Example: limit results
+                limit: 6 // Example: limit results
             }
         });
 
         const articles: IArticle[] = response.data.data;
 
-        console.log('Fetched articles:', articles); // Log the articles to inspect their structure
-
         // Transform articles to match the schema
-        const transformedArticles = articles.map(article => ({
-            title: article.title,
-            description: article.description,
-            url: article.url,
-            source: { name: article.source }, // Transform source to an object
-            published_at: new Date(article.published_at), // Ensure it's a Date object
-            author: article.author,
-            image: article.image,
-            category: article.category,
-            language: article.language,
-            country: article.country
+        const transformedArticles = articles.map((article) => ({
+            title: article.title || "No title",
+            description: article.description || "",
+            url: article.url || "",
+            source: { name: article.source || "" }, // This should match the schema
+            published_at: article.published_at ? new Date(article.published_at) : new Date(), // Default to current date if missing
+            author: article.author || "no author",
+            image: article.image || "no image",
+            category: article.category || "no category",
+            language: article.language || "no language",
+            country: article.country || " no country",
         }));
 
         await Article.insertMany(transformedArticles);

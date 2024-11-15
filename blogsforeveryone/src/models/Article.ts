@@ -1,34 +1,33 @@
-import mongoose, { Document, Model, Schema } from 'mongoose';
+// src/models/Article.ts
+import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IArticle extends Document {
     title: string;
     description: string;
     url: string;
-    source: string; // Source is a string
+    source: { name: string }; // Ensure this is defined as an object with a name property
     published_at: Date;
-    author?: string; // Optional fields
-    image?: string;
-    category?: string;
-    language?: string;
-    country?: string;
+    author: string;
+    image: string;
+    category: string;
+    language: string;
+    country: string;
 }
 
-const ArticleSchema: Schema<IArticle> = new Schema({
-    title: { type: String, required: true },
-    description: { type: String, required: true },
-    url: { type: String, required: true },
-    source: { type: String, required: true }, // Source is a string
-    published_at: { type: Date, required: true },
-    author: { type: String },
-    image: { type: String },
-    category: { type: String },
-    language: { type: String },
+const ArticleSchema: Schema = new Schema({
+    title: { type: String  },
+    description: { type: String  },
+    url: { type: String  },
+    source: { name: { type: String  } }, // Define source as an object with a name property
+    published_at: { type: Date  },
+    author: { type: String  },
+    image: { type: String  },
+    category: { type: String  },
+    language: { type: String  },
     country: { type: String },
-}, { timestamps: true });
+});
 
-// Create a TTL index on the createdAt field
-ArticleSchema.index({ createdAt: 1 }, { expireAfterSeconds: 2592000 }); // 30 days
-
-const Article: Model<IArticle> = mongoose.models.Article || mongoose.model<IArticle>('Article', ArticleSchema);
+// Check if the model already exists to avoid OverwriteModelError
+const Article = mongoose.models.Article || mongoose.model<IArticle>('Article', ArticleSchema);
 
 export default Article;
