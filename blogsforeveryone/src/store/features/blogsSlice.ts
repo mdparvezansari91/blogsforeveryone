@@ -5,9 +5,10 @@ import { toast } from 'react-toastify';
 interface Blogs {
     _id: string;
     title: string;
-    content:string,
-    likes:string[],
-    createdAt:string
+    content:string;
+    likes:string[];
+    comments:object[];
+    createdAt:string;
 }
 
 interface BlogsState {

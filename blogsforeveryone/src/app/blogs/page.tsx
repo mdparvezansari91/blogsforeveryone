@@ -78,7 +78,7 @@ const Blogs = () => {
     return (
         <>
             <Head>
-                <title>Blogs - My Website</title>
+                <title>Shop and Blogs</title>
                 <meta name="description" content="Explore our latest blogs on various topics. Read, comment, and engage with our community." />
                 <link rel="canonical" href="https://yourwebsite.com/blogs" />
                 {/* Structured Data for Blog List */}
@@ -128,7 +128,7 @@ const Blogs = () => {
                                     {blog.likes.includes(user?._id?? "") ? <AiFillHeart /> : <AiOutlineHeart />}
                                     </button>
                                     
-                                    <p className='mr-1'>10</p>
+                                    <p className='mr-1'>{blog.comments.length}</p>
                                     <button className="text-red-900" onClick={() => toggleCommentsVisibility(blog._id)}>
                                         <FaRegComment />
                                     </button>
