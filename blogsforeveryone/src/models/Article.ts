@@ -27,7 +27,7 @@ const ArticleSchema: Schema<IArticle> = new Schema({
 }, { timestamps: true });
 
 // Create a TTL index on the createdAt field
-ArticleSchema.index({ createdAt: 1 }, { expireAfterSeconds: 10 }); // 7 days
+ArticleSchema.index({ createdAt: 1 }, { expireAfterSeconds: 2592000 }); // 30 days
 
 const Article: Model<IArticle> = mongoose.models.Article || mongoose.model<IArticle>('Article', ArticleSchema);
 
