@@ -4,7 +4,6 @@ import { useAppDispatch } from "@/store/hooks"; // Ensure this path is correct
 import { signIn } from "@/store/features/auth/authSlice";
 import { useRouter } from "next/navigation"; // This is correct for Next.js 13+
 import { useSearchParams } from "next/navigation"; // Use this for query parameters
-import Image from "next/image";
 import { toast } from "react-toastify";
 import { AppDispatch } from "@/store/store";
 
