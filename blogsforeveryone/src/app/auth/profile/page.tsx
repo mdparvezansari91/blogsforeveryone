@@ -17,7 +17,7 @@ function Profile() {
         <>
         <div>
             <h1>Profile</h1>
-            <p>{user?.email}</p>
+            <p>{user?.name}</p>
         </div>
         </>
     )

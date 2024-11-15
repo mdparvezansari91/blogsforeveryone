@@ -1,38 +1,37 @@
 // pages/blogs/index.tsx
 "use client";
-import { fetchblogs } from '@/store/features/blogsSlice';
+import { fetchblogs, hitlike } from '@/store/features/blogsSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { FaThumbsUp, FaThumbsDown, FaEdit, FaTrash, FaRegComment } from 'react-icons/fa'; // Import icons
+import { FaEdit, FaTrash, FaRegComment } from 'react-icons/fa'; // Import icons
 import Head from 'next/head';
-import CategoryFilter from '@/components/CategoryFilter';
+
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { profile } from '@/store/features/auth/authSlice';
 
 const Blogs = () => {
     const dispatch = useAppDispatch();
     const blogs = useAppSelector(state => state.blogs.blogs);
+    const user = useAppSelector(state=>state.auth.user)
+
+    console.log(user)
     const [comments, setComments] = useState<{ [key: string]: string[] }>({});
     const [visibleComments, setVisibleComments] = useState<{ [key: string]: boolean }>({}); // State to track visibility of comments
-    const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-    const handleCategorySelect = (category: string) => {
-        setSelectedCategory(category);
-        // Here you can implement additional logic to filter your blog posts
-        console.log(`Selected category: ${selectedCategory}`);
-      };
 
-    
-      const handlelike = ()=>{
-        
-        console.log("like button clicked")
+    const handlelike = (id: string) => {
 
-      }
+        dispatch(hitlike(id))
+
+    }
 
 
 
 
     useEffect(() => {
         dispatch(fetchblogs());
+        dispatch(profile())
     }, [dispatch]);
 
     // Check if blogs is an array before mapping
@@ -103,7 +102,6 @@ const Blogs = () => {
                     })}
                 </script>
             </Head>
-            <CategoryFilter onCategorySelect={handleCategorySelect} />
             <div className="container mx-auto px-4 py-8">
                 <h1 className="text-3xl font-bold text-center mb-6">Blogs</h1>
                 {blogs.length === 0 ? (
@@ -111,7 +109,7 @@ const Blogs = () => {
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {blogs.map((blog) => (
-                            <article key={ blog._id} className="bg-white shadow-md rounded-lg p-6 relative">
+                            <article key={blog._id} className="bg-white shadow-md rounded-lg p-6 relative">
                                 {/* Edit Icon positioned in the top right corner */}
                                 <button
                                     onClick={() => handleEditBlog(blog._id)}
@@ -125,14 +123,11 @@ const Blogs = () => {
 
                                 {/* Like/Dislike Icons */}
                                 <div className="flex items-center mt-4">
-                                    <p className='mr-1'>200</p>
-                                    <button onClick={handlelike} className="text-blue-500 mr-4">
-                                        <FaThumbsUp />
+                                    <p className='mr-1'>{blog.likes.length}</p>
+                                    <button onClick={() => handlelike(blog._id)} className="text-blue-500 mr-4">
+                                    {blog.likes.includes(user?._id?? "") ? <AiFillHeart /> : <AiOutlineHeart />}
                                     </button>
-                                    <p className='mr-1'>100</p>
-                                    <button className="text-red-500 mr-4">
-                                        <FaThumbsDown />
-                                    </button>
+                                    
                                     <p className='mr-1'>10</p>
                                     <button className="text-red-900" onClick={() => toggleCommentsVisibility(blog._id)}>
                                         <FaRegComment />
@@ -176,7 +171,7 @@ const Blogs = () => {
                                     >
                                         Read More
                                     </button>
-                                    
+
                                 </Link>
                             </article>
                         ))}

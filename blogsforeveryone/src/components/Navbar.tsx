@@ -1,18 +1,27 @@
+import { signOut } from '@/store/features/auth/authSlice';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, {useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Navbar = () => {
+    const dispatch = useAppDispatch()
+    const user = useAppSelector(state=>state.auth.user)
     const [nav, setNav] = useState(false);
-    
+
+    const handleLogout = ()=>{
+            dispatch(signOut())
+    }
+
     return (
         <>
             <nav className="flex justify-between items-center p-5 bg-gray-200 shadow-md relative z-20">
-                <h1 className="text-2xl font-bold">Blogs for Everyone</h1>
+                <h1 className="text-2xl font-bold">Shop and Blog</h1>
                 <div className="hidden md:flex space-x-4">
                     <Link href="/uploadblogs" className="text-gray-700 hover:text-blue-500 transition duration-200">Upload</Link>
                     <Link href="/" className="text-gray-700 hover:text-blue-500 transition duration-200">Home</Link>
                     <Link href="/blogs" className="text-gray-700 hover:text-blue-500 transition duration-200">Blogs</Link>
+                    {user?<button onClick={handleLogout}>Logout</button>:<Link href="/signin" className="text-gray-700 hover:text-blue-500 transition duration-200">Sign in</Link>}
                     
                 </div>
                 <div className="md:hidden cursor-pointer" onClick={() => setNav(!nav)} aria-expanded={nav} aria-controls="mobile-menu">

@@ -5,10 +5,8 @@ import { NextResponse } from "next/server"
 
 export async function GET(){
     try {
-        console.log("get all blogs")
-
         await dbConnect();
-        const blogs = await BlogsPost.find({}) 
+        const blogs = await BlogsPost.find({})
         return NextResponse.json({
             blogs,
         },{

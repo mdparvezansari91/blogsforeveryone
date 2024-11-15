@@ -7,7 +7,6 @@ interface Blogs {
     title: string;
     content:string,
     likes:string[],
-    dislikes:string[],
     createdAt:string
 }
 
@@ -23,12 +22,30 @@ const initialState: BlogsState = {
     error: null,
 };
 
+export const hitlike = createAsyncThunk<{ blogId: string }, string>(
+    "like/blog",
+    async (blogid, { rejectWithValue }) => {
+        try {
+            const response = await axios.post("/api/blogs/hitlike", {
+                blogid,
+            });
+            return response.data; // Ensure this returns the necessary data
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                return rejectWithValue(error.response?.data.message);
+            }
+            return rejectWithValue("An unexpected error occurred");
+        }
+    }
+);
+
+
 export const fetchblogs = createAsyncThunk(
     'products/fetchblogs',
     async (_, { rejectWithValue }) => {
         try {
             const response = await axios.get('/api/blogs');
-            return response.data.blogs; // Correctly accessing the products array
+            return response.data; // Correctly accessing the products array
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 toast.error(error.response?.data?.message || 'Failed to fetch products');
@@ -56,8 +73,7 @@ const blogsSlice = createSlice({
             })
             .addCase(fetchblogs.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.blogs = action.payload; // This should now be an array
-                console.log(action.payload);
+                state.blogs = action.payload.blogs; // This should now be an array
                 state.error = null;
             })
             .addCase(fetchblogs.rejected, (state, action) => {

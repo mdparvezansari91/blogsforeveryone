@@ -11,12 +11,21 @@ import MortgageCalculator from "@/components/calculators/MortgageCalculator";
 import RetirementCalculator from "@/components/calculators/RetirementCalculator";
 import TaxCalculator from "@/components/calculators/TaxCalculator";
 import CarouselComponent from "@/components/CarouselComponents";
+import { useEffect } from "react";
+import { useAppDispatch } from "@/store/hooks";
+import { profile } from "@/store/features/auth/authSlice";
 
 const images = [
   ci, cv
 ];
 
 export default function Home() {
+  const dispatch = useAppDispatch()
+
+  useEffect(()=>{
+    dispatch(profile())
+
+  },[dispatch])
   return (
     <>
       <div className="container mx-auto p-4 mt-4 bg-slate-300 rounded-lg shadow-lg">

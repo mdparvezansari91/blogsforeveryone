@@ -3,6 +3,8 @@ import axios, { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 
 interface User {
+  _id:string;
+  name:string;
   email: string;
   password:string
 }
@@ -42,7 +44,7 @@ export const signIn = createAsyncThunk(
 
 export const signUp = createAsyncThunk(
   'auth/signUp',
-  async (userData: { email: string; password: string }, { rejectWithValue }) => {
+  async (userData: {name:string; email: string; password: string }, { rejectWithValue }) => {
     try {
       const response = await axios.post('/api/signup',
         userData
@@ -136,7 +138,7 @@ const authSlice = createSlice({
       })
       .addCase(profile.fulfilled, (state, action) => {
         state.loading = false; // Set loading to false on success
-        state.user = action.payload; // Update user with fetched profile
+        state.user = action.payload.user; // Update user with fetched profile
       })
       .addCase(profile.rejected, (state, action) => {
         state.loading = false; // Set loading to false on error

@@ -7,12 +7,11 @@ export async function POST(req: Request){
         await dbConnect();
         const body = await req.json()
 
-        const {email,password} = body
+        const {name, email,password} = body
         
-        console.log(email)
-        if(!email || !password){
+        if(!name || !email || !password ){
             return NextResponse.json({
-                message:"email and Password are required"
+                message:"Name email and Password are required"
             },
         {
             status:401
