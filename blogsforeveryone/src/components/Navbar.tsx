@@ -38,7 +38,7 @@ const Navbar = () => {
                     <Link href="/uploadblogs" className="text-white text-2xl py-2" onClick={() => setNav(false)}>Upload</Link>
                     <Link href="/" className="text-white text-2xl py-2" onClick={() => setNav(false)}>Home</Link>
                     <Link href="/blogs" className="text-white text-2xl py-2" onClick={() => setNav(false)}>Blogs</Link>
-                    
+                    {user?<button onClick={handleLogout}>Logout</button>:<Link href="/signin" className="text-gray-700 hover:text-blue-500 transition duration-200">Sign in</Link>}
                 </div>
             )}
         </>
