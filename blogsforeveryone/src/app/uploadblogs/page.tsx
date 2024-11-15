@@ -1,4 +1,5 @@
 "use client";
+import TiptapEditor from '@/components/TiptapEditor';
 import axios from 'axios';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -83,6 +84,7 @@ const BlogUploader: React.FC = () => {
                     Back to Home
                 </Link>
             </form>
+            <TiptapEditor/>
         </div>
     );
 };

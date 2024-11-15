@@ -61,7 +61,8 @@ export async function middleware(request: NextRequest) {
 
     // For protected routes
     if (!token) {
-        return NextResponse.redirect(new URL('/signin', request.url));
+        // Redirect to signin with a query parameter
+        return NextResponse.redirect(new URL('/signin?redirected=true', request.url));
     }
 
     try {
@@ -79,8 +80,8 @@ export async function middleware(request: NextRequest) {
             },
         });
     } catch {
-        // Token is invalid, redirect to signin
-        const response = NextResponse.redirect(new URL('/signin', request.url));
+        // Token is invalid, redirect to signin with a query parameter
+        const response = NextResponse.redirect(new URL('/signin?redirected=true', request.url));
         response.cookies.delete('token');
         return response;
     }
