@@ -15,7 +15,7 @@ export async function GET() {
         const response = await axios.get('http://api.mediastack.com/v1/news', {
             params: {
                 access_key: MEDIA_STACK_API,
-                limit: 5, // Example: limit results
+                limit: 4, // Example: limit results
             },
         });
 
