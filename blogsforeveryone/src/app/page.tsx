@@ -1,7 +1,8 @@
 "use client"
 import ImageCarousel from "@/components/ImageCarousel";
-import ci from "../../public/assets/images/coverpage.png"
-import cv from "../../public/assets/images/coverimage2.jpg"
+import img1 from "../../public/assets/images/img1.jpg"
+// import img2 from "../../public/assets/images/img2.jpg"
+// import img3 from "../../public/assets/images/img3.jpg"
 import EMICalculator from "@/components/calculators/EmiCalculator";
 import BMICalculator from "@/components/calculators/BMICalculator";
 import SavingsCalculator from "@/components/calculators/SavingsCalculator";
@@ -15,8 +16,10 @@ import { useEffect } from "react";
 import { useAppDispatch } from "@/store/hooks";
 import { profile } from "@/store/features/auth/authSlice";
 
+
+
 const images = [
-  ci, cv
+  img1
 ];
 
 export default function Home() {
