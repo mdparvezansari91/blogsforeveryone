@@ -1,9 +1,24 @@
 import type { NextConfig } from "next";
 
-
 const nextConfig: NextConfig = {
   images: {
-    domains: ['i.ytimg.com',"placehold.co","images.unsplash.com"], // Allow images from i.ytimg.com
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
+        pathname: '/**', // Allows any path
+      },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+        pathname: '/**', // Allows any path
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**', // Allows any path
+      },
+    ],
   },
   // Add any other Next.js configuration options here
 };
