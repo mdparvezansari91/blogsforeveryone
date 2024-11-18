@@ -35,11 +35,49 @@ export async function GET() {
             language: article.language || "no language",
             country: article.country || " no country",
         }));
-
-
         // Insert articles into the database
         await Article.insertMany(transformedArticles);
         await Article.deleteMany({$or:[{image:"no image"},{category:"no category"},{language:"no language"},{country:"no country"},{author:"no author"},{title:"no title"}]})
+        
+        const findDuplicates = async () => {
+            const duplicates = await Article.aggregate([
+                {
+                    $group: {
+                        _id: { title: "$title" }, // Group by title
+                        count: { $sum: 1 }, // Count the number of occurrences
+                        ids: { $push: "$_id" } // Store the IDs of the duplicate documents
+                    }
+                },
+                {
+                    $match: {
+                        count: { $gt: 1 } // Only keep groups that have more than 1 occurrence
+                    }
+                }
+            ]);
+        
+            return duplicates;
+        };
+        const removeDuplicates = async () => {
+            const duplicates = await findDuplicates();
+        
+            for (const duplicate of duplicates) {
+                const idsToDelete = duplicate.ids.slice(1); // Keep the first one, delete the rest
+                await Article.deleteMany({ _id: { $in: idsToDelete } });
+            }
+        };
+
+        const cleanup = async () => {
+            try {
+                await removeDuplicates();
+                console.log('Duplicates removed successfully.');
+            } catch (error) {
+                console.error('Error removing duplicates:', error);
+            }
+        };
+
+        cleanup()
+
+        
 
         return NextResponse.json({ message: 'Articles fetched and saved successfully' });
     } catch (error) {
