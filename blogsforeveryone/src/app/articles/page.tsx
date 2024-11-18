@@ -2,10 +2,12 @@
 "use client"
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Article {
     title: string;
     description: string;
+    image:string;
     url: string;
     source: { name: string };
     published_at: string;
@@ -15,7 +17,7 @@ const ArticlesPage = () => {
     const [articles, setArticles] = useState<Article[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const limit = 10; // Number of articles per page
+    const limit = 12; // Number of articles per page
 
     useEffect(() => {
         const fetchArticles = async () => {
@@ -48,6 +50,12 @@ const ArticlesPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {articles.map((article, index) => (
                     <div key={index} className="bg-white rounded-lg shadow p-4">
+                        <Image
+                        src={article.image}
+                        alt={article.title}
+                        width={300}
+                        height={200}
+                         />
                         <h2 className="text-lg font-semibold">{article.title}</h2>
                         <p className="text-gray-700">{article.description}</p>
                         <a href={article.url} target="_blank" rel="noopener noreferrer" className="text-blue-500">

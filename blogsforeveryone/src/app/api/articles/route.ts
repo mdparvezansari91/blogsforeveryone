@@ -12,12 +12,12 @@ export async function GET(request: Request) {
     try {
         // Connect to MongoDB
         await dbConnect();
-
         const totalArticles = await Article.countDocuments(); // Get total number of articles
         const articles = await Article.find({})
             .sort({ published_at: -1 }) // Sort by publishedAt in descending order (latest first)
             .skip(skip)
             .limit(limit);
+
 
         return NextResponse.json({ articles, totalPages: Math.ceil(totalArticles / limit) });
     } catch (error) {

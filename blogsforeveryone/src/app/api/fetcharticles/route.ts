@@ -39,6 +39,7 @@ export async function GET() {
 
         // Insert articles into the database
         await Article.insertMany(transformedArticles);
+        await Article.deleteMany({$or:[{image:"no image"},{category:"no category"},{language:"no language"},{country:"no country"},{author:"no author"},{title:"no title"}]})
 
         return NextResponse.json({ message: 'Articles fetched and saved successfully' });
     } catch (error) {
