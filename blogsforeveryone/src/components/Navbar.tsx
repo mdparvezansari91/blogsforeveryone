@@ -36,7 +36,7 @@ const Navbar = () => {
                     className="absolute top-0 left-0 w-full h-screen bg-gray-800 bg-opacity-75 flex flex-col justify-center items-center z-30 transition-opacity duration-300"
                     onClick={() => setNav(false)}
                 >
-                    <Link href="/uploadblogs" className="text-white text-2xl py-2" onClick={() => setNav(false)}>Upload</Link>
+                    {/* <Link href="/uploadblogs" className="text-white text-2xl py-2" onClick={() => setNav(false)}>Upload</Link> */}
                     <Link href="/" className="text-white text-2xl py-2" onClick={() => setNav(false)}>Home</Link>
                     <Link href="/blogs" className="text-white text-2xl py-2" onClick={() => setNav(false)}>Blogs</Link>
                     <Link href="/articles" className="text-white text-2xl py-2" onClick={() => setNav(false)}>articles</Link>
