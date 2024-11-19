@@ -6,6 +6,23 @@ interface Source {
     name: string;
 }
 
+interface FilterOption {
+    id: string; // or number, based on your identifier type
+    value: string;
+    label: string;
+}
+
+interface CountryOption {
+    id: string; // or number, based on your identifier type
+    value:string;
+    label:string
+}
+
+interface Filter {
+    category: string;
+    country: string;
+}
+
 interface Article {
     _id: string;
     title: string;
@@ -26,6 +43,10 @@ interface ArticleState {
     error: string | null;
     currentPage: number;
     totalPages: number;
+    filter:Filter;
+    filterOptions:FilterOption[]
+    countryOptions:CountryOption[]
+    
 }
 
 const initialState: ArticleState = {
@@ -34,14 +55,20 @@ const initialState: ArticleState = {
     error: null,
     currentPage: 1,
     totalPages: 1,
+    filter: {
+        category: '',
+        country: '',
+    },
+    filterOptions:[],
+    countryOptions:[],
 };
 
 // Thunk to fetch articles
 export const fetchArticles = createAsyncThunk(
     'articles/fetchArticles',
-    async ({ page, limit }: { page: number; limit: number }, { rejectWithValue }) => {
+    async ({ page, limit, filter }: { page: number; limit: number; filter: Filter }, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`/api/articles?page=${page}&limit=${limit}`);
+            const response = await axios.get(`/api/articles?page=${page}&limit=${limit}&category=${filter.category}&country=${filter.country}`);
             return response.data; // Ensure this returns { articles: Article[], totalPages: number }
         } catch (error) {
             if (axios.isAxiosError(error)) {
@@ -59,7 +86,13 @@ const articleSlice = createSlice({
     initialState,
     reducers: {
         setCurrentPage(state, action) {
+
             state.currentPage = action.payload; // Update current page
+        },setCategoryFilter(state, action) {
+            state.filter.category = action.payload; // Update category filter
+        },
+        setCountryFilter(state, action) {
+            state.filter.country = action.payload; // Update country filter
         },
     },
     extraReducers: (builder) => {
@@ -72,6 +105,8 @@ const articleSlice = createSlice({
                 state.status = 'succeeded';
                 state.articles = action.payload.articles; // Assuming the API response has articles
                 state.totalPages = action.payload.totalPages; // Assuming the API response has totalPages
+                state.filterOptions=action.payload.filterOptions
+                state.countryOptions=action.payload.countryOptions
                 state.error = null;
             })
             .addCase(fetchArticles.rejected, (state, action) => {
@@ -81,5 +116,5 @@ const articleSlice = createSlice({
     },
 });
 
-export const { setCurrentPage } = articleSlice.actions;
+export const { setCurrentPage, setCategoryFilter, setCountryFilter } = articleSlice.actions;
 export default articleSlice.reducer;

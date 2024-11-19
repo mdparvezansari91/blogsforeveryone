@@ -18,7 +18,7 @@ const Navbar = () => {
             <nav className="flex justify-between items-center p-5 bg-gray-200 shadow-md relative z-20">
                 <h1 className="text-2xl font-bold">Shop and Blog</h1>
                 <div className="hidden md:flex space-x-4">
-                    <Link href="/uploadblogs" className="text-gray-700 hover:text-blue-500 transition duration-200">Upload</Link>
+                    {/* <Link href="/uploadblogs" className="text-gray-700 hover:text-blue-500 transition duration-200">Upload</Link> */}
                     <Link href="/" className="text-gray-700 hover:text-blue-500 transition duration-200">Home</Link>
                     <Link href="/blogs" className="text-gray-700 hover:text-blue-500 transition duration-200">Blogs</Link>
                     <Link href="/articles" className="text-gray-700 hover:text-blue-500 transition duration-200">articles</Link>
