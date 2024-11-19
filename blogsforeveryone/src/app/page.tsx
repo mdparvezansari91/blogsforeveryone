@@ -16,6 +16,10 @@ import { useEffect } from "react";
 import { useAppDispatch } from "@/store/hooks";
 import { profile } from "@/store/features/auth/authSlice";
 import BestArticlesSlides from "@/components/BestArticlesSlides";
+import useFetchArticles from "@/store/customhooks/useFetchArticles";
+
+
+
 
 
 
@@ -25,9 +29,11 @@ const images = [
 
 export default function Home() {
   const dispatch = useAppDispatch()
-
+  useFetchArticles(1,12)
   useEffect(()=>{
     dispatch(profile())
+    
+
 
   },[dispatch])
   return (
