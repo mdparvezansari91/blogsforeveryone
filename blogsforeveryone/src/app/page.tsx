@@ -32,9 +32,6 @@ export default function Home() {
   useFetchArticles(1,12)
   useEffect(()=>{
     dispatch(profile())
-    
-
-
   },[dispatch])
   return (
     <>
