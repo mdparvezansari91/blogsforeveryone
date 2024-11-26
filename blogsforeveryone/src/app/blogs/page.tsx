@@ -6,7 +6,6 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FaEdit, FaTrash, FaRegComment } from 'react-icons/fa'; // Import icons
 import Head from 'next/head';
-
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { profile } from '@/store/features/auth/authSlice';
 
