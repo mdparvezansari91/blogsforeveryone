@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
 
-const publicPaths = ['/', '/signin', '/signup', '/api/signin', '/api/signup', '/api/articles', '/articles', '/api/blogs', '/blogs', '/ads.txt'];
+const publicPaths = ['/', '/signin', '/signup', '/api/signin', '/api/signup', '/api/articles', '/articles', '/api/blogs', '/blogs','/privacy', '/ads.txt'];
 const authPaths = ['/signin', '/signup']; // Paths that should redirect to home if user is authenticated
 
 export async function middleware(request: NextRequest) {
