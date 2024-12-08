@@ -1,3 +1,4 @@
+'use client'
 import { signOut } from '@/store/features/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import Link from 'next/link';

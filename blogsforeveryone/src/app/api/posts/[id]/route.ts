@@ -6,8 +6,6 @@ export async function GET(req:NextRequest){
     await dbConnect()
 
     const id = req.url.split("/").pop()
-    console.log(id)
-
     const posts = await Posts.findById(id)
     console.log(posts)
 

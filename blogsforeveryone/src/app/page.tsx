@@ -20,9 +20,6 @@ import useFetchArticles from "@/store/customhooks/useFetchArticles";
 
 
 
-
-
-
 const images = [
   img1
 ];
