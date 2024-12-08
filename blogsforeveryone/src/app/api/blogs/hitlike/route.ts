@@ -10,14 +10,10 @@ interface User {
 }
 
 export async function POST(req: Request) {
-    console.log("Hit Like");
 
     try {
         const body = await req.json();
         const userHeader = req.headers.get("x-user");
-
-        console.log(userHeader);
-        console.log(body);
 
         // Parse the user header as JSON
         if (!userHeader) {
@@ -55,8 +51,6 @@ export async function POST(req: Request) {
         // Add user ID to likes
         blogPost.likes.push(userId);
         await blogPost.save();
-
-        console.log(blogPost);
 
         return NextResponse.json({
             message: "Like button clicked",

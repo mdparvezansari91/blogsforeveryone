@@ -7,7 +7,6 @@ export async function GET(req:Request, context:{params:Promise<{id:string}>}){
         await dbConnect()
         const {id} = await context.params;
         const blog = await BlogsPost.findById(id);
-        console.log(blog)
 
        return NextResponse.json({
         blog

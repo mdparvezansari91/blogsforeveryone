@@ -31,7 +31,7 @@ function Page() {
         <>
             <Head>
                 <title>{data?.title}</title>
-                <meta name="description" content={data?.content.substring(0, 150) || 'Read this post to learn more.'} />
+                <meta name="description" content={data?.content.substring(0, 200) || 'Read this post to learn more.'} />
                 <link rel="canonical" href={`https://shopnblog.online/posts/${id}`} />
                 <script type="application/ld+json" dangerouslySetInnerHTML={{
                     __html: JSON.stringify({

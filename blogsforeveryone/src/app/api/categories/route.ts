@@ -6,7 +6,6 @@ export async function GET() {
   try {
     await dbConnect();
     const categories = await BlogsPost.distinct("category");
-    console.log(categories);
     return NextResponse.json(
       {
         categories,

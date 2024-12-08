@@ -7,7 +7,6 @@ export async function GET(req:NextRequest){
 
     const id = req.url.split("/").pop()
     const posts = await Posts.findById(id)
-    console.log(posts)
 
     return NextResponse.json({
         posts,

@@ -20,7 +20,6 @@ export async function GET() {
         });
 
         const articles: IArticle[] = response.data.data;
-        console.log("article fetched from cronjob")
 
         // Transform articles to match the schema
         const transformedArticles = articles.map((article) => ({
