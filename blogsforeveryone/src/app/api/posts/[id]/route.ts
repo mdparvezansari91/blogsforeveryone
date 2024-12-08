@@ -1,0 +1,19 @@
+import dbConnect from "@/lib/mongoose";
+import Posts from "@/models/Posts";
+import { NextRequest, NextResponse } from "next/server";
+
+export async function GET(req:NextRequest){
+    await dbConnect()
+
+    const id = req.url.split("/").pop()
+    console.log(id)
+
+    const posts = await Posts.findById(id)
+    console.log(posts)
+
+    return NextResponse.json({
+        posts,
+    },{
+        status: 200
+    })
+}

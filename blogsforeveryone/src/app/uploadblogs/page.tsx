@@ -1,11 +1,12 @@
 "use client";
-import TiptapEditor from '@/components/TiptapEditor';
+
 import axios from 'axios';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
 const BlogUploader: React.FC = () => {
     // State to hold form data
+    
     const [data, setData] = useState({
         title: '',
         content: '',
@@ -15,6 +16,7 @@ const BlogUploader: React.FC = () => {
     // Handle input changes
     const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
+        
         setData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -36,6 +38,7 @@ const BlogUploader: React.FC = () => {
     };
 
     return (
+        <>
         <div className="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg">
             <h2 className="text-2xl font-bold text-center mb-6">Upload Your Blog Post</h2>
             <form onSubmit={onSubmit}>
@@ -84,8 +87,11 @@ const BlogUploader: React.FC = () => {
                     Back to Home
                 </Link>
             </form>
-            <TiptapEditor/>
         </div>
+        <div>
+            
+        </div>
+        </>
     );
 };
 
