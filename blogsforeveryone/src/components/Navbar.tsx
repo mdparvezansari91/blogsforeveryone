@@ -42,6 +42,7 @@ const Navbar = () => {
                     <Link href="/" className="text-white text-2xl py-2" onClick={() => setNav(false)}>Home</Link>
                     <Link href="/blogs" className="text-white text-2xl py-2" onClick={() => setNav(false)}>Blogs</Link>
                     <Link href="/articles" className="text-white text-2xl py-2" onClick={() => setNav(false)}>articles</Link>
+                    <Link href="/posts" className="text-white text-2xl py-2" onClick={() => setNav(false)}>posts</Link>
                     {user?<button className="text-white text-2xl py-2" onClick={handleLogout}>Logout</button>:<Link href="/signin" className="text-white text-2xl py-2">Sign in</Link>}
                 </div>
             )}
