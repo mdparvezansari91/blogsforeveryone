@@ -42,10 +42,10 @@ function Page() {
                         "articleBody": data?.content,
                         "author": {
                             "@type": "Person",
-                            "name": "Author Name" // Replace with actual author name
+                            "name": "Parvez ansari" // Replace with actual author name
                         },
                         "datePublished": new Date().toISOString(), // Replace with actual publish date
-                        "url": `https://yourwebsite.com/posts/${id}`
+                        "url": `https://shopnblog.online/posts/${id}`
                     })
                 }} />
             </Head>
